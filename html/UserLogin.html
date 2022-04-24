@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>用户登录界面</title>
+    <link rel="stylesheet" href="css/login.css" />
+    <!-- <script src="../../loginJS.js"></script> -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="panel">
+            <div class="content">
+                <div class="switch">
+                    <h1 id="login">登录</h1>
+                </div>
+
+                <form action="#">
+
+                    <div type="text" class="input" aria-placeholder="用户名"><input id="userName" type="text" maxlength="16" required></div>
+                    <div type="password" class="input" aria-placeholder="密码"><input id="password" type="password" required></div>
+
+                    <p>
+                        <a id="signUp" href="UserSignUp.html" class="input">跳转注册</a>
+                        <span>|</span>
+                        <a id="forget" href="UserRetrieve.html" class="input">忘记密码？</a>
+                    </p>
+                    <button id="loginButton" type="button">登录</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        $('.input input').on('focus', function () {
+            $(this).parent().addClass('focus');
+        })
+
+        $('.input input').on('blur', function () {
+            if ($(this).val() === '')
+                $(this).parent().removeClass('focus');
+        })
+
+        var btn = document.getElementById('loginButton');
+
+        btn.addEventListener('click', function () {
+            var userName = document.getElementById('userName');
+            var userPassword = document.getElementById('password');
+            var passwordMD5 = md5(userPassword.value); 
+
+            $.ajax({
+                url: 'http://localhost:7000/api/login?userName=' + userName.value + "&password=" + passwordMD5,
+                type: "POST",
+                async: false,
+                //data:{email:userEmail.value}
+                xhrFields: { withCredentials: true },
+                success: function (msg) {
+                    alert(msg.message);
+                    if (msg.message.substring(0, 5) == '登录成功!')
+                        window.location = 'index2试验.html ';
+                        // 获取购物车商品id
+                        { 
+                        var userName = msg.message.substring(5);
+                        var CartInfo;
+                        var way = 'getCode';
+                        $.ajax({
+                            url: 'http://localhost:7000/api/getProductId?userName=' + userName,
+                            type: "POST",
+                            async: false,
+                            contentType: "application/json;charset=UTF-8",
+                            dataType: 'json',
+                            xhrFields: { withCredentials: true },
+                            success: function (msg) {
+                                CartInfo = msg.message;
+                            },
+                            error: function (msg) {
+                                alert(msg.message);
+                            }
+
+                        })
+                    }
+                    sessionStorage.setItem("CartInfo", CartInfo);
+                    sessionStorage.setItem('userName', userName);
+                },
+                error: function (msg) {
+                    alert(msg.message);
+                }
+            })
+        });
+
+
+    </script>
+</body>
+
+</html>

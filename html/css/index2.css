@@ -1,0 +1,789 @@
+/*css样式开始*/
+/*重置浏览器页面默认设置*/
+/*
+* {
+    margin: 0;
+    padding: 0;
+}*/
+
+/*顶端导航栏*/
+.header {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    background-color: #333;
+    color: #b0b0b0;
+    font-size: 12px;
+    margin-bottom: 50px;
+}
+
+/*顶部居中样式*/
+.wrap {
+    width: 1226px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/*顶端左侧*/
+.header-left {
+    float: left;
+}
+
+/*顶端右侧*/
+.header-right {
+    float: right;
+}
+
+
+/*所有的顶端元素*/
+.header li {
+    float: left;
+    margin-right: 15px;
+    list-style: none;
+}
+
+/*定义a*/
+.header a {
+    font-size: 14px;
+    text-decoration: none;
+    color: #b0b0b0;
+}
+
+.header a:hover {
+    text-decoration: none;
+    color: #fff;
+}
+
+/*定义span*/
+.header span {
+    color: #424242;
+    margin: 0 0.3em;
+}
+
+/*定义购物车*/
+.cart {
+    position: relative;
+    margin-left: 25px;
+    width: 120px;
+    height: 40px;
+    background-color: #424242;
+    cursor: pointer;
+}
+
+.cart i {
+    margin-right: 4px;
+    font-weight: 900;
+}
+
+.cart:hover {
+    background-color: #fff;
+}
+
+.cart:hover a {
+    color: #ff6700;
+}
+
+/*购物车下拉框*/
+.cart-list {
+    z-index: 850;
+    position: absolute;
+    top: 40px;
+    right: 0;
+    width: 316px;
+    height: 0;
+    line-height: 0;
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, .15);
+    color: #424242;
+    transition: all .3s;
+    overflow: hidden;
+}
+
+.cart:hover>.cart-list {
+    height: 100px;
+    line-height: 100px;
+}
+
+/*引入购物车图标*/
+.iconfont {
+    font-family: "iconfont" !important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/*定义退出按钮*/
+.exit {
+    margin-left: 20px;
+    width: 40px;
+    height: 30px;
+    background-color: #333;
+    color: #b0b0b0;
+}
+
+.exit:hover {
+    color: #fff;
+}
+
+/*css样式结束*/
+
+/*导航样式开始*/
+.nav {
+    width: 100%;
+    height: 100px;
+    background-color: #fff;
+}
+
+/* 搜索框
+.search {
+    position: relative;
+    width: 296px;
+    height: 50px;
+    float: left;
+    margin-top: 25px;
+} */
+
+/*导航栏内容*/
+.nav-bar {
+    width: 868px;
+    height: 100px;
+    background-color: #fff;
+    float: left;
+}
+
+.nav-bar>ul>li {
+    float: left;
+    padding: 38px 10px;
+    list-style: none;
+}
+
+.nav-bar a {
+    text-decoration: none;
+    color: #000000;
+}
+
+.nav-bar>ul>li>a:hover {
+    color: #ff6700;
+}
+
+/*搜索栏设置
+.search>input {
+    float: left;
+    width: 245px;
+    height: 50px;
+    border: 1px solid #e0e0e0;
+    border-right: none;
+    padding: 0 10px;
+    box-sizing: border-box;
+    outline: none;
+    transition: all .2s;
+}
+
+.search>a {
+    float: left;
+    text-decoration: none;
+    width: 50px;
+    height: 50px;
+    border: 1px solid #e0e0e0;
+    box-sizing: border-box;
+    font-size: 24px;
+    color: #616161;
+    line-height: 48px;
+    transition: all .2s;
+}
+
+.search>a:hover {
+    background-color: #ff6700;
+    border-color: #ff6700;
+    color: #fff;
+}
+
+.search>input:hover,
+.search>input:hover+a {
+    border-color: #b0b0b0;
+}
+
+.search>input:focus,
+.search>input:focus+a {
+    border-color: #ff6700;
+}
+
+搜索框
+.search-list {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 246px;
+    height: 241px;
+    border: 1px solid #ff6700;
+    border-top: none;
+    box-sizing: border-box;
+    background-color: #fff;
+    display: none;
+}
+
+.search>input:focus~.search-list {
+    display: block;
+}
+
+.search-list>a {
+    text-decoration: none;
+    width: 243px;
+    height: 30px;
+    padding: 6px 15px;
+    display: block;
+    box-sizing: border-box;
+    color: #424242;
+    font-size: 12px;
+    text-align: left;
+}*/
+
+/*导航样式结束*/
+
+/*商品模板开始*/
+.pro-img {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 18px;
+}
+
+.pro-img a {
+    width: 100%;
+    height: 100%;
+}
+
+.pro-img img {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/*商品类型*/
+.tag {
+    margin: 0 10px 10px;
+    height: 15px;
+    font-size: 10px;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    color: #1302f6;
+}
+
+/*商品标题*/
+.info {
+    margin: 0 10px 10px;
+    height: 18px;
+    font-size: 14px;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    color: #6d65df;
+}
+
+/*商品价格*/
+.price {
+    font-size: 14px;
+    margin: 0 10px 10px;
+    text-align: center;
+    color: #ff0000;
+}
+
+/*商品模板结束*/
+
+/*商品展示开始*/
+/*图片属性*/
+.product-img {
+    position: relative;
+    float: left;
+    margin-top: 50px;
+    width: 400px;
+    height: 400px;
+    background-color: #424242;
+}
+
+.product-img>img {
+    width: 400px;
+    height: 400px;
+}
+
+
+/*类型属性*/
+.product-tag {
+    position: absolute;
+    float: left;
+    line-height: 40px;
+    min-width: 100px;
+    min-height: 50px;
+    width: auto;
+    height: auto;
+    margin-top: 50px;
+    margin-left: 440px;
+    background-color: #c4bcb6;
+}
+
+.product-tag>a {
+    color: #000000;
+}
+
+/*商品名字属性*/
+.product-name {
+    position: absolute;
+    float: left;
+    line-height: 40px;
+    min-width: 100px;
+    min-height: 50px;
+    width: auto;
+    height: auto;
+    max-width: 350px;
+    margin-left: 440px;
+    margin-top: 110px;
+    background-color: #c4bcb6;
+}
+
+.product-name>a {
+    color: #000;
+}
+
+/*商品介绍属性*/
+.product-info {
+    position: absolute;
+    float: left;
+    line-height: 40px;
+    min-width: 400px;
+    width: auto;
+    height: auto;
+    max-height: 230px;
+    max-width: 450px;
+    margin-top: 200px;
+    margin-left: 450px;
+    background-color: #eacbb6;
+}
+
+.product-info>a {
+    color: #000;
+}
+
+/*商品价格*/
+.product-prince {
+    position: absolute;
+    float: left;
+    line-height: 50px;
+    min-width: 60px;
+    min-height: 50px;
+    width: auto;
+    height: auto;
+    margin-top: 50px;
+    margin-left: 850px;
+    background-color: #c4bcb6;
+}
+
+.product-prince>a {
+    color: #000000;
+}
+
+
+/*商品库存属性*/
+.product-num {
+    position: absolute;
+    float: left;
+    line-height: 50px;
+    min-width: 100px;
+    min-height: 50px;
+    width: auto;
+    height: auto;
+    margin-top: 110px;
+    margin-left: 850px;
+    background-color: #c4bcb6;
+}
+
+.product-num>a {
+    color: #000000;
+}
+
+/*加入购物车按钮属性*/
+.add-cart {
+    position: absolute;
+    float: left;
+    line-height: 30px;
+    width: 200px;
+    height: 60px;
+    margin-top: 440px;
+    margin-left: -370px;
+    border: none;
+    background-color: #ff6700;
+    font-size: 24px;
+}
+
+.add-cart>a {
+    color: rgb(255, 255, 255);
+}
+
+.add-cart:hover,
+.add-cart:hover a,
+.add-cart:hover i {
+    background-color: #6d65df;
+    color: #d7c6b4;
+}
+
+/*购物车图标*/
+.add-cart>i {
+    margin-right: 10px;
+    font-size: 25 px;
+    color: #fff;
+}
+
+
+/*购买按钮属性*/
+.buy {
+    position: absolute;
+    float: left;
+    line-height: 30px;
+    width: 200px;
+    height: 60px;
+    margin-top: 440px;
+    margin-left: -110px;
+    border-color: #ff6700;
+    background-color: #f5f4f4f8;
+    font-size: 24px;
+}
+
+.buy>a {
+    color: #ff6700;
+}
+
+.buy:hover,
+.buy:hover a {
+    border: none;
+    background-color: #9a94ed;
+    color: #fff;
+}
+
+/*商品展示结束*/
+
+/*商品订单页开始*/
+/*定义分类按钮*/
+.order-type-button {
+    float: left;
+    width: 150px;
+    height: 50px;
+    margin-top: -30px;
+    margin-left: 70px;
+    font-size: 23px;
+    border: none;
+    border-radius: 10px 10px 10px 10px;
+    background-color: #333;
+}
+
+.order-type-button>a {
+    color: #b0b0b0;
+}
+
+.order-type-button:hover,
+.order-type-button:hover a {
+    background-color: #ff6700;
+    color: #fff;
+}
+
+/*订单信息区分属性*/
+.nav-dis {
+    width: 100%;
+    height: 50px;
+    background-color: #fff;
+}
+
+/*定义分类栏li*/
+.nav-dis li {
+    margin-left: 100px;
+    float: left;
+    list-style: none;
+}
+
+/*定义分类栏a*/
+.nav-dis a {
+    text-decoration: none;
+    color: #b0b0b0;
+}
+
+
+/*商品订单盒子属性*/
+.order-info {
+    position: relative;
+    margin-top: 20px;
+    margin-left: 150px;
+    width: 1100px;
+    height: 170px;
+    border: 2px solid #b0b0b0;
+    background-color: #fff;
+}
+
+/*商品订单图片属性*/
+.order-img {
+    position: absolute;
+    width: 130px;
+    height: 130px;
+    margin-left: 20px;
+    margin-top: 20px;
+    background-color: #b0b0b0;
+}
+
+/*商品订单商品名字属性*/
+.order-product-name {
+    position: absolute;
+    width: auto;
+    height: auto;
+    min-width: 100px;
+    max-width: 400px;
+    max-height: 80px;
+    margin-left: 190px;
+    margin-top: 20px;
+}
+
+.order-product-name>a {
+    color: #686363d0;
+}
+
+/*商品数量属性*/
+.order-number {
+    position: absolute;
+    width: auto;
+    height: 20px;
+    min-width: 50px;
+    margin-top: 120px;
+    margin-left: 200px;
+    font-size: 14px;
+}
+
+.order-number>a {
+    color: #686363d0;
+}
+
+/*商品金额属性*/
+.order-pince {
+    position: absolute;
+    width: auto;
+    height: 30px;
+    max-width: 200px;
+    margin-top: 70px;
+    margin-left: 550px;
+}
+
+.order-pince>a {
+    font-size: 20px;
+    color: #6c6969;
+}
+
+/*商品状态属性*/
+.order-state {
+    position: absolute;
+    width: auto;
+    height: 30px;
+    max-height: 100px;
+    margin-top: 70px;
+    margin-left: 860px;
+}
+
+.order-state>a {
+    font-size: 20px;
+    color: #6c6969;
+}
+
+/*商品订单页结束*/
+
+/*下订单页面开始*/
+.pay-info {
+    position: relative;
+    margin-top: 20px;
+    margin-left: 180px;
+    width: 1100px;
+    height: 400px;
+    border: 2px solid #b0b0b0;
+    background-color: #fff;
+}
+
+/*下订单界面图片属性*/
+.pay-img {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    margin-top: 50px;
+    margin-left: 60px;
+    background-color: #b0b0b0;
+}
+
+/*下订单商品名字属性*/
+.pay-product-name {
+    position: absolute;
+    min-width: 80px;
+    min-height: 30px;
+    width: auto;
+    height: auto;
+    max-width: 150px;
+    max-height: 30px;
+    margin-top: 50px;
+    margin-left: 400px;
+}
+
+.pay-product-name>a {
+    font-size: 20px;
+    color: #5e5c5c;
+}
+
+/*下订单商品数量属性*/
+.pay-number {
+    position: absolute;
+    width: 150px;
+    height: 30px;
+    margin-top: 250px;
+    margin-left: 355px;
+}
+
+.pay-number>a {
+    size: 14px;
+    color: #5e5c5c;
+}
+
+/*下订单商品金额属性*/
+.pay-pince {
+    position: absolute;
+    min-width: 50px;
+    max-width: 170px;
+    width: auto;
+    height: 25px;
+    margin-top: 60px;
+    margin-left: 900px;
+}
+
+.pay-pince>a {
+    size: 16px;
+    color: #464444;
+}
+
+/*下订单按钮*/
+.buy-now {
+    position: absolute;
+    width: 200px;
+    height: 50px;
+    margin-top: 320px;
+    margin-left: 240px;
+    border-color: #ff6700;
+}
+
+.buy-now>a {
+    color: #ff6700;
+    font-size: 20px;
+}
+
+.buy-now:hover,
+.buy-now:hover a {
+    border: none;
+    background-color: #9a94ed;
+    color: #fff;
+}
+
+/*下订单页面结束*/
+
+/*购物车页面开始*/
+/*购物框整体属性*/
+.cartbox {
+    width: 80%;
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+/*购物栏顶部分类属性*/
+.carttitle>th {
+    border-top: 3px solid #a7cbff;
+    background-color: #038cfd;
+    text-align: center;
+}
+
+/*商品行属性*/
+.cartproduct {
+    height: 80px;
+    border: 1px solid #CADEFF;
+    text-align: center;
+    color: rgb(167, 159, 159);
+    font-size: 14px;
+}
+
+
+tr:hover,
+tr:hover a {
+    background-color: #ff6700;
+    color: #fff;
+}
+
+.count-input {
+    width: 50px;
+    text-align: center;
+    height: 21px;
+
+
+}
+
+/*底部总数总价属性*/
+#foot td {
+    height: 30px;
+}
+
+.reduce {
+    position: relative;
+    left: 5px;
+    bottom: 2px;
+}
+
+.add {
+    position: relative;
+    right: 5px;
+    bottom: 2px;
+}
+
+.reduce,
+.add {
+    display: inline-block;
+    width: 20px;
+    height: 25px;
+    background-color: #ccc;
+    color: rgb(241, 133, 10);
+    cursor: pointer;
+}
+
+span {
+    cursor: pointer;
+}
+
+#allPrice {
+    display: inline-block;
+    width: 50px;
+}
+
+tfoot tr td {
+    text-align: left;
+}
+
+/*下订单按钮*/
+.cartbuy {
+    position: absolute;
+    width: 200px;
+    height: 50px;
+    margin-top: 50px;
+    margin-left: 1100px;
+    border-color: #ff6700;
+}
+
+.cartbuy>a {
+    color: #ff6700;
+    font-size: 20px;
+}
+
+.cartbuy:hover,
+.cartbuy:hover a {
+    border: none;
+    background-color: #9a94ed;
+    color: #fff;
+}
+
+/*购物车页面结束*/

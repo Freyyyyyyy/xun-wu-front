@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <title>购物车</title>
+    <!--引入图标-->
+    <link rel="stylesheet" href="img/iconfont.css">
+    <!--自己的样式-->
+    <link rel="stylesheet" href="css/index2.css">
+    <!-- <script src="../js/index.js"></script> -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/mall.css">
+    <link rel="stylesheet" href="css/mallR.css">
+
+</head>
+
+<body>
+    <!--头部开始-->
+    <div class="header">
+        <div class="wrap">
+            <!--左边导航模块-->
+            <ul class="header-left">
+                <li><a id="back" href="index2试验.html">返回寻物首页</a><span></span></li>
+                <!--<li><a href="">商城</a><span>|</span></li>
+                <li><a href="">商城</a><span>|</span></li>
+                <li><a href="">商城</a><span>|</span></li>
+                <li><a href="">商城</a><span>|</span></li>
+                <li><a href="">商城</a><span></span></li> -->
+            </ul>
+
+            <!--右边导航模块-->
+            <ul class="header-right">
+                <li><a id="login" href="UserLogin.html">登录</a><span>|</span></li>
+                <li><a id="signup" href="UserSignUp.html">注册</a><span>|</span></li>
+                <!-- <li id="shoppingCart" style="cursor: pointer" class="cart">
+                    <a><i class="iconfont">&#xe609;</i>购物车</a>
+                </li> -->
+                <li><a id="myOrder" style="cursor: pointer">我的订单</a><span></span></li>
+                <li><a id="upload" style="cursor: pointer">发布商品</a><span></span></li>
+                <li><button class="exit" id="close" style="display: none;">退出</button></li>
+            </ul>
+        </div>
+    </div>
+    <!--头部结束-->
+
+    <table class="cartbox">
+        <thead>
+            <tr class="carttitle">
+                <th><input type="checkbox" id="ckAll" onclick="checkAll()">全选</th>
+                <th></th>
+                <th>商品</th>
+                <th>单价</th>
+                <th>购买数量</th>
+                <th>总额</th>
+                <th>删除</th>
+            </tr>
+        </thead>
+
+        <!--购物车商品通用行-->
+        <tbody class="wrap" id="cart-list">
+        </tbody>
+
+
+        <tfoot id="foot">
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>总数：<span id="allCount"></span></td>
+                <td>总价：<span id="allPrice"></span></td>
+            </tr>
+        </tfoot>
+    </table>
+    <button id="cartbuy" class="cartbuy"><a>立即付款</a></button>
+</body>
+
+<script>
+   //登录和注册按钮的切换
+   {
+            if (sessionStorage.getItem('userName')) {
+                $("#login").html("<li><a id = 'login' href='#'>你好</a><span>|</span></li>");
+                $("#signup").html("<li><a id = 'signup' href='#'>" + sessionStorage.getItem('userName') + "</a><span>|</span></li>");
+                document.getElementById('close').style.display = "block";
+            }
+
+            document.getElementById('close').addEventListener('click', function () {
+                alert('账号已退出');
+                sessionStorage.removeItem('userName');
+                window.location.href = 'index2试验.html';
+                $("#login").html("<li><a id = 'login' href= '../UserLogin.html'>登录</a></li>");
+                $("#signup").html("<li><a id = 'signup' href= '../UserSignUp.html'>注册</a></li>");
+                document.getElementById('close').style.display = "none";
+            });
+        }
+
+        // 跳转功能
+        {
+            // 我的订单
+            document.getElementById('myOrder').addEventListener('click', function () {
+                window.location = "myOrder.html";
+            })
+
+            // 商品发布
+            document.getElementById('upload').addEventListener('click', function () {
+                window.location = "upload.html";
+            })
+        }
+
+    // 用户信息
+    {
+        var CartInfo = sessionStorage.getItem("CartInfo");
+        var userName = sessionStorage.getItem('userName');
+        var way = "getInfo";
+        var ProductInfo;
+
+        // alert(CartInfo);
+    }
+    //读取购物车信息
+    /*
+    ProductCarAllId
+    productId
+    productPicture
+    productName
+    productPrice
+    */
+    {
+
+        var ProductCarAllId = CartInfo.split(",")
+        var ProductAllinfo = new Array();
+        var productId = "";
+        var productPicture = "";
+        var productName = "";
+        var productPrice = "";
+        for (var i = 0; i < ProductCarAllId.length; i++) {
+            var AproductId = ProductCarAllId[i];
+            if (AproductId != "") {
+
+                $.ajax({
+                    url: 'http://localhost:7000/api/getProductInfo?AProductId=' + AproductId,
+                    type: "POST",
+                    async: false,
+                    contentType: "application/json;charset=UTF-8",
+                    dataType: 'json',
+                    xhrFields: { withCredentials: true },
+                    success: function (msg) {
+                        // productId = msg.productId;
+                        // productName = msg.productName;
+                        // productPicture = msg.productPicture;
+                        // productPrice = msg.productPrice;
+                        ProductAllinfo[msg.productId] = msg.productId + ";" + msg.productPicture + ";" + msg.productName + ";" + msg.productPrice;
+                    },
+                    error: function (msg) {
+                        alert(JSON.stringify(msg));
+                    }
+
+                })
+            }
+        }
+    }
+
+
+    {// 返回跳转
+        document.getElementById('back').addEventListener('click', function () {
+            window.location = 'index2试验.html ';
+            // alert("购物车信息已保存" + userName + CartInfo);
+            //保存购物车信息
+            $.ajax({
+                url: 'http://localhost:7000/api/saveCartInfo',
+                type: "POST",
+                async: false,
+                contentType: "application/json;charset=UTF-8",
+                dataType: 'json',
+                xhrFields: { withCredentials: true },
+                data: JSON.stringify({ "userName": userName, "productCart": CartInfo }),
+                success: function (msg) {
+                    alert(JSON.stringify(msg));
+                },
+                error: function (msg) {
+                    alert(JSON.stringify(msg));
+                }
+            })
+        })
+
+        // 购买跳转
+        document.getElementById("cartbuy").addEventListener('click', function () {
+            alert("正在创建订单");
+        })
+
+        //登录和注册按钮的切换
+        {
+            if (sessionStorage.getItem('userName')) {
+                $("#login").html("<li><a id = 'login' href='#'>你好</a><span>|</span></li>");
+                $("#signup").html("<li><a id = 'signup' href='#'>" + sessionStorage.getItem('userName') + "</a><span>|</span></li>");
+                document.getElementById('close').style.display = "block";
+            }
+
+            document.getElementById('close').addEventListener('click', function () {
+                alert('账号已退出');
+                sessionStorage.removeItem('userName');
+                $("#login").html("<li><a id = 'login' href= '../UserLogin.html'>登录</a></li>");
+                $("#signup").html("<li><a id = 'signup' href= '../UserSignUp.html'>注册</a></li>");
+                document.getElementById('close').style.display = "none";
+            });
+        }
+
+    }
+
+    var rowtoproductid = new Array();
+    var row = 1;
+    // 插入内容
+    for (var i = 0; i < ProductAllinfo.length; i++) {
+        var producttr = document.createElement("tr");
+        if (ProductAllinfo[i] != null) {
+            rowtoproductid[ProductAllinfo[i].split(";")[0]] = row;
+            row += 1;
+            producttr.innerHTML =
+                '<tr class="inline">' +
+                '<td><input type="checkbox" name="ck" onclick="check()"></td>' +
+                '<td><img src="' + ProductAllinfo[i].split(";")[1] + '" width="100px" height="100px"></td>' +
+                '<td id="">' + ProductAllinfo[i].split(";")[2] + '</td>' +
+                '<td id="">' + ProductAllinfo[i].split(";")[3] + ' </td>' +
+                '<td>' +
+                '<span class="reduce" onclick="reduceCount(this)">-</span>' +
+                '<input type="text" value="1" class="count-input">' +
+                '<span class="add" onclick="addCount(this)">+</span>' +
+                '</td>' +
+                '<td></td>' +
+                '<td>' +
+                // '<span id = "wwww" "style="cursor:pointer;" onclick="delRow(this);">删除</span>' +
+                '<button id = "' + i + '" class = "style="cursor:pointer;"  onclick="delRow(this);">删除</button>' +
+                '</td>' +
+                '</tr>';
+            $("#cart-list").append(producttr);
+        }
+    }
+    //删除
+    {
+        //----获取行号-----
+        function getRow(r) {
+            var i = r.parentNode.parentNode.rowIndex;
+            return i;
+        }
+
+        //----删除某一行-----
+        function delRow(r) {
+            // var productid = rowtoproductid[getRow(r)];
+            var adelrow = getRow(r);
+            var removeProductid;
+            for (var i = 0; i < ProductAllinfo.length; i++) {
+                if (ProductAllinfo[i] != null) {
+                    var productID = ProductAllinfo[i].split(";")[0]
+                    var IdtoRow = rowtoproductid[productID];
+                    if (IdtoRow == adelrow) removeProductid = productID;
+                    if (IdtoRow > adelrow) {
+
+                        rowtoproductid[productID] = IdtoRow - 1;
+                    }
+                    console.dir(productID + "  " + IdtoRow + " " + adelrow);
+                }
+            }
+
+            console.dir(removeProductid);
+            r.parentElement.parentElement.remove();
+            CartInfo = CartInfo.replace(removeProductid + ",", "");
+            sessionStorage.setItem("CartInfo", CartInfo);
+            alert(sessionStorage.getItem("CartInfo"));
+        }
+    }
+
+
+    // 价格计算及商品选定
+    {
+        //获取元素
+        var ckAll = document.getElementById('ckAll');
+        var cks = document.getElementsByName('ck');
+        var trs = document.getElementsByClassName('inline');
+        var allCount = document.getElementById('allCount');
+        var allPrice = document.getElementById('allPrice');
+        var countInput = document.getElementsByClassName('count-input');
+
+
+        //计算总数
+        function sumCount() {
+            var sum = 0;
+            for (var i = 0; i < cks.length; i++) {
+                if (cks[i].checked == true) {
+                    var num = Number(countInput[i].value);
+                    sum += num;
+                }
+            }
+            allCount.innerHTML = sum;
+        }
+
+        //计算总价
+        function sumPrice() {
+            var sum = 0;
+            for (var i = 0; i < cks.length; i++) {
+                if (cks[i].checked == true) {
+                    var p = Number(trs[i].children[5].innerHTML);
+                    sum += p;
+                }
+            }
+            allPrice.innerHTML = sum.toFixed(2);
+        }
+
+        //计算每一行的总价
+        function inlinePrice() {
+            for (var i = 0; i < trs.length; i++) {
+                //获取每一行单价
+                var price = Number(trs[i].children[3].innerHTML);
+                //获取数量
+                var num = Number(trs[i].children[4].children[1].value);
+                //小计
+                trs[i].children[5].innerHTML = (price * num).toFixed(2);
+
+            }
+        }
+
+        //数量增加
+        function addCount(e) {
+            // 获取input标签里的value值,数量
+            var num = parseInt(e.previousElementSibling.value);
+            //数量加1
+            e.previousElementSibling.value = num + 1;
+            inlinePrice();
+            sumPrice();
+            sumCount();
+        }
+
+        //数量递减
+        function reduceCount(e) {
+            var num = parseInt(e.nextElementSibling.value);
+            if (num <= 0) {
+                alert("不能再减了");
+                return;
+            }
+
+            e.nextElementSibling.value = num - 1;
+            inlinePrice();
+            sumPrice();
+            sumCount();
+        }
+
+        //全选和反选
+        function checkAll() {
+            for (var i = 0; i < cks.length; i++) {
+                cks[i].checked = ckAll.checked;
+            }
+            sumPrice();
+            sumCount();
+        }
+
+        //复选框的交互
+        function check() {
+            // 判断四个小的复选框有没有没被选中的,如果有一个,就把ckAllde的checked 变为false
+            for (var i = 0; i < cks.length; i++) {
+                if (cks[i].checked == false) {
+                    ckAll.checked = false;
+                    sumPrice();
+                    sumCount();
+                    // 有一个小复选框为false,就不需要对其他复选框进行判断了,直接中止函数下面的执行语句
+                    return;
+                }
+            }
+            //循环结束后,如果小复选框checked的值都为true,ckAll的checked的值就为true
+            ckAll.checked = true;
+            sumPrice();
+            sumCount();
+        }
+
+    }
+
+</script>

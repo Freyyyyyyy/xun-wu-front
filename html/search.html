@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>商品搜索</title>
+
+	<!--引入图标-->
+	<link rel="stylesheet" href="img/iconfont.css">
+	<!--自己的样式-->
+	<link rel="stylesheet" href="css/index2.css">
+	<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="css/mall.css">
+	<link rel="stylesheet" href="css/mallR.css">
+
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+	<script>
+	$(function() {
+	  $( "#from" ).datepicker({
+		defaultDate: "+1w",
+		changeMonth: true,
+		numberOfMonths: 3,
+		onClose: function( selectedDate ) {
+		  $( "#to" ).datepicker( "option", "minDate", selectedDate );
+		}
+	  });
+	  $( "#to" ).datepicker({
+		defaultDate: "+1w",
+		changeMonth: true,
+		numberOfMonths: 3,
+		onClose: function( selectedDate ) {
+		  $( "#from" ).datepicker( "option", "maxDate", selectedDate );
+		}
+	  });
+	});
+	</script>
+
+	<style>
+		.paginate {
+            font-size:0;
+			width: 500px;
+        }
+        .paginate li{
+            font-size:14px;
+            display: inline-block;
+            margin-right:10px;
+            text-align: center;
+            width:30px;
+            height:28px;
+            line-height: 28px;
+            border:1px solid #ddd;
+        }
+        .paginate [disabled]{
+            color:gray;
+        }
+        .paginate li:not([disabled]):hover {
+            cursor: pointer;
+            color:#fff;
+            background-color: #009688;
+        }
+        .paginate li.jump{
+            border:none;
+            width:auto;
+        }
+        .paginate li.jump .entrance{
+            border:1px solid #ddd;
+            text-align: center;
+            width:30px;
+            height:28px;
+        }
+	</style>
+</head>
+
+<body class="search-page">
+		<!--头部开始-->
+		<div class="header">
+			<div class="wrap">
+				<!--左边导航模块-->
+				<ul class="header-left">
+					<li><a href="index2试验.html">返回寻物首页</a><span></span></li>
+				</ul>
+	
+				<!--右边导航模块-->
+				<ul class="header-right">
+					<li><a id="login" href="UserLogin.html">登录</a><span>|</span></li>
+					<li><a id="signup" href="UserSignUp.html">注册</a><span>|</span></li>
+					<li id="shoppingCart" style="cursor: pointer" class="cart">
+						<a ><i class="iconfont">&#xe609;</i>购物车</a>
+					</li>
+					<li><a id="myOrder" style="cursor: pointer">我的订单</a><span></span></li>
+					<li><a id="upload" style="cursor: pointer">发布商品</a><span></span></li>
+				</ul>
+			</div>
+		</div>
+		<!--头部结束-->
+	
+	<!-- 顶部导航条
+    <div class="nav">
+        <ul>
+            <li>
+                <a href="index.html">回到首页</a>
+            </li>
+
+			<li>
+                <a href="publish.html">发布商品</a>
+            </li>
+			<li>
+                <a href="cart.html">购物车</a>
+            </li>
+            <li>
+                <a href="order.html">订单列表</a>
+            </li>
+
+            <li class="nav-pull-down my-shop">
+                <a href="#">我的商城</a>
+                <span class="glyphicon glyphicon-menu-down"></span>
+            </li>
+            <li class="login-signup">你好，请
+                <a href="login.html">登录 </a>
+                <span class="text-color-red">
+                    <a href="signup.html">免费注册</a>
+                </span>
+            </li>
+        </ul>
+    </div> -->
+
+	<!-- 搜索框 -->
+	<div class="search">
+		<div class="search-body">
+			<div class="input-group">
+				<input id="keyword" type="text" class="form-control" placeholder="输入你想要的商品">
+				<span class="input-group-btn">
+					<button id="kSearch" class="btn btn-danger btn-search" type="button">
+						<i class="fa fa-search"></i>
+					</button>
+				</span>
+			</div>
+			<div class="search-keyword">
+				<p>ebook？ video？ account?</p>
+			</div>
+		</div>
+	</div>
+	<!-- 导航栏 -->
+	<div class="search-nav">
+		<div class="search-nav-container">
+			<ul>
+				<li class="search-nav-container-li-active">
+					<input name="category" type="radio" value=0 checked id="cg_0" style="display: none;"/>
+					<label for="cg_0">
+					全部商品分类
+					</label>
+				</li>
+				<li>
+					<input name="category" type="radio" value=1 id="cg_1" style="display: none;"/>
+					<label for="cg_1">
+					<span>ebook</span>
+					</label>
+				</li>
+				<li>
+					<input name="category" type="radio" value=2 id="cg_2" style="display: none;"/>
+					<label for="cg_2">
+					<span>video</span>
+					</label>
+				</li>
+				<li>
+					<input name="category" type="radio" value=3 id="cg_3" style="display: none;"/>
+					<label for="cg_3">
+					<span>account</span>
+					</label>
+				</li>
+				<!--
+				<li><a href="index.html">首页</a></li>
+				<li><a href="index.html">服装城</a></li>
+				<li><a href="index.html">美妆馆</a></li>
+				<li><a href="index.html">京东超市</a></li>
+				<li><a href="index.html">生鲜</a></li>
+				<li><a href="index.html">全球购</a></li>
+				<li><a href="index.html">闪购</a></li>
+				<li><a href="index.html">拍卖</a></li>
+				<li><a href="index.html">金融</a></li>
+				-->
+			</ul>
+		</div>
+	</div>
+	<!-- 内容主题开始 -->
+	<div class="container-full">
+		<div id="total" class="host-location">
+			<!--全部结果 > 共
+			<span class="host-location-text">"手机壳"</span>-->
+		</div>
+		<div class="item-class-show">
+			<div class="item-class-group item-class-group-top">
+				<div class="item-class-name">
+					<span>时间范围：</span>
+				</div>
+				<div class="item-class-select">
+					<span></span>
+					<input type="text" id="from" name="from" title="请同时提交由小到大的开始和结束范围，否则不会显示哦！">
+					<span> -- </span>
+					<span></span>
+					<input type="text" id="to" name="to" title="请同时提交由小到大的开始和结束范围，否则不会显示哦！">
+				</div>
+			</div>
+			<div class="item-class-group">
+				<div class="item-class-name">
+					<span>价格范围：</span>
+				</div>
+				<div class="item-class-select">
+					<span></span>
+					<input id="priceStart"  type="number" title="请同时提交由小到大的开始和结束范围，否则不会显示哦！&#10;请输入11位内有效数字，小数点后只能保留两位" onkeyup= "if( ! /^([0-9]+|[0-9]{1,3}(,[0-9]{3})*)(.[0-9]{0,2})?$/.test(this.value)){alert('小数点后只能保留两位');this.value='';}" oninput="if(value.length>11)value=value.slice(0,11)">
+					<span> -- </span>
+					<span></span>
+					<input id="priceEnd"  type="number" title="请同时提交由小到大的开始和结束范围，否则不会显示哦！&#10;请输入11位内有效数字，小数点后只能保留两位" onkeyup= "if( ! /^([0-9]+|[0-9]{1,3}(,[0-9]{3})*)(.[0-9]{0,2})?$/.test(this.value)){alert('小数点后只能保留两位');this.value='';}" oninput="if(value.length>11)value=value.slice(0,11)">
+					<span>元</span>
+				</div>
+			</div>
+			<div class="item-class-group">
+				<div class="item-class-name">
+					<span>大小范围：</span>
+				</div>
+				<div class="item-class-select">
+					<span></span>
+					<input id="sizeStart"  type="number" title="请同时提交由小到大的开始和结束范围，否则不会显示哦！&#10;请输入11位内有效整数" onkeyup= "if( ! /^\d+$/.test(this.value)){this.value='';}" oninput="if(value.length>11)value=value.slice(0,11)">
+					<span> -- </span>
+					<span></span>
+					<input id="sizeEnd"  type="number" title="请同时提交由小到大的开始和结束范围，否则不会显示哦！&#10;请输入11位内有效整数" onkeyup= "if( ! /^\d+$/.test(this.value)){this.value='';}" oninput="if(value.length>11)value=value.slice(0,11)">
+					<span>字数/分钟</span>
+				</div>
+			</div>
+		</div>
+		<div class="item-list">
+
+			<div class="item-list-right">
+				<div class="item-list-tool">
+					<ul>
+						<!--<li>
+							<span>推荐
+								<strong>
+									<i class="fa fa-long-arrow-down"></i>
+								</strong>
+							</span>
+						</li>-->
+						<li>
+							<input name="sortC" type="radio" value=2 id="sort_2" style="display: none;"/>
+							<label for="sort_2">
+							<span>销量
+								<strong>
+									<i class="fa fa-long-arrow-down"></i>
+									
+							</span>
+							</strong>
+							</label>
+						</li>
+						<li>
+							<input name="sortC" type="radio" value=1 id="sort_1" style="display: none;"/>
+							
+							<span>
+								<label for="sort_1">新品</label>
+								<strong>
+									<i class="fa fa-long-arrow-down"></i>
+							</span>
+							</strong>
+							
+						</li>
+						<li>
+							<input name="sortC" type="radio" value=3 id="sort_3" style="display: none;"/>
+							<label for="sort_3">
+							<span>价格
+								<strong>
+									<i class="fa fa-long-arrow-up"></i>
+							</span>
+							</strong>
+							</label>
+						</li>
+						<li>
+							<input name="sortC" type="radio" value=4 id="sort_4" style="display: none;"/>
+							<label for="sort_4">
+							<span>价格
+								<strong>
+									<i class="fa fa-long-arrow-down"></i>
+							</span>
+							</strong>
+						    </label>
+						</li>
+						<!--<input name="sortC" type="radio" checked value=0 id="sort_0" />-->
+					</ul>
+				</div>
+				<div id="product" class="item-container">
+				</div>
+				<!--<div class="item-container">
+				</div>
+				<div class="item-container">
+				</div>
+				<div class="item-container">
+				</div>-->
+			</div>
+		</div>
+	</div>
+
+	<div class="page-num" style="margin-top: 100px;">
+		<nav>
+			<ul class="paginate">
+				<!--
+				<li>
+					<a>
+						<span aria-hidden="true">&laquo;</span>
+					</a>
+				</li>
+				<li class="active">
+					<a href="#">1</a>
+				</li>
+				<li>
+					<a href="#">2</a>
+				</li>
+				<li>
+					<a href="#">3</a>
+				</li>
+				<li>
+					<a href="#">4</a>
+				</li>
+				<li>
+					<a href="#">5</a>
+				</li>
+				<li>
+					<a href="#">6</a>
+				</li>
+				<li>
+					<a href="#">7</a>
+				</li>
+				<li>
+					<a href="#">8</a>
+				</li>
+				<li>
+					<a href="#">
+						<span>&raquo;</span>
+					</a>
+				</li>
+				-->
+			</ul>
+		</nav>
+	</div>
+	</div>
+	<!-- 内容主题结束 -->
+
+
+	<!-- 清除浮动 -->
+	<div class="clearfix"></div>
+
+	<!-- 页面上的各种浮窗 -->
+	<!-- 我的商城 -->
+	<div class="my-shop-panel">
+		<p>
+			<span class="my-item">待处理订单</span>
+			<span class="my-item">未支付订单</span>
+		</p>
+		<p>
+			<span class="my-item">我的购物车</span>
+			<span class="my-item">降价商品</span>
+		</p>
+		<p>
+			<span class="my-item">已发布商品</span>
+			<span class="my-item">我的消息</span>
+		</p>
+	</div>
+</body>
+
+
+<script src="js/mall.js"></script>
+<script src="js/function.js"></script>
+</html>

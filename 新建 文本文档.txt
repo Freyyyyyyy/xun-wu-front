@@ -1,0 +1,4 @@
+先在启动nginx.exe
+然后网页直接输入：
+http://localhost:7000/UserRetrieve.html（UserRetrieve.html 为每个页面的名字）
+http://localhost:7000/index2试验.html

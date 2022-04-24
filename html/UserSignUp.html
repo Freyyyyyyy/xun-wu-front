@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>用户注册界面</title>
+    <!-- <link rel="stylesheet" href="css/login.css" /> -->
+    <link rel="stylesheet" href="css/jiastyleSignUp.css"/>
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="panel">
+            <div class="content">
+                <div class="switch">
+                    <h1 id="signUp">注册</h1>
+                </div>
+
+                <form action="">
+                    <!-- <input id="userName" type = "text" placeholder="请输入你的用户名"/><div  aria-placeholder="用户名"></div> -->
+                    <div class="input" aria-placeholder="用户名"><input id="userName" type="text" title="请填写16位内有效名称" maxlength="16" required></div>
+                    <div class="input" aria-placeholder="邮箱"><input id="email" type="text" title="请输入有效邮箱地址" required></div>
+                    <p><button id="getEmailCode" type="button">点击获取验证码</button></p>
+                    <div class="input" aria-placeholder="邮箱验证码"><input id="authCode" type="text" maxlength="6" required></div>
+                    <div class="input" aria-placeholder="密码"><input id="password" type="password" required></div>
+                    <div class="input" aria-placeholder="确定密码"><input id="ensurepassword" type="password" required></div>
+
+                    <!-- // test -->
+                    <div id="html"></div>
+
+                    <p>
+                        <a id="login" href="UserLogin.html" class="input">已有账户？点击登录</a>
+                    </p>
+
+                    <!-- <button onclick="location.href='UserLogin.html'" id=reset type="button">注册</button> -->
+                    <button id="reset" type="button" disabled="true">注册</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /*
+        确保输入框被输入后，输入框名上移
+        */
+        $('.input input').on('focus', function () {
+            $(this).parent().addClass('focus');
+        })
+
+        $('.input input').on('blur', function () {
+            if ($(this).val() === '')
+                $(this).parent().removeClass('focus');
+        })
+
+        /*
+        1.文档从上到下加载，先有标签，所以写在标签的下面
+        2.get 获取 element 元素 by 通过 驼峰命名法
+        3.参数 id 是大小写敏感的字符串
+        4.返回的是元素对象
+        */
+
+        //声明3个变量，用户名,邮箱,密码
+        var userName = document.getElementById('userName');
+        var userEmail = document.getElementById('email');
+        var userPassword = document.getElementById('password');
+        var ensurepassword = document.getElementById('ensurepassword');
+        var authCode = document.getElementById('authCode');
+
+        var ans = document.getElementById("html")
+
+        // ajax about getEmailCode
+        ///^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/.test(userEmail.value)
+        if (userEmail != null ) {
+            $(function () {
+                $('#getEmailCode').on('click', function () {
+                    // var str1 = userEmail.value;
+                    // var str2 = "http://localhost:7000/api/verifyA?email=" + str1;
+                    $.ajax({
+                        url: "http://localhost:7000/api/verifyA?email=" + email.value,
+                        type: "POST",
+                        async: false,
+                        //data:{email:userEmail.value}
+                        xhrFields: { withCredentials: true },
+                        success: function (msg) {
+                            alert(msg.message);
+                            $("#reset").attr("disabled",false);
+                        },
+                        error: function (msg) {
+                            alert(msg.message);
+                        }
+                    })
+                })
+            })
+        } else {
+            alert('请填写可收到短信的邮箱！')
+        }
+
+        // ajax about reset
+
+        $(function () {
+            $('#reset').on('click', function () {
+                var str1 = authCode.value;
+                var str2 = "http://localhost:7000/api/register?authCode=" + str1;
+                if (ensurepassword.value == userPassword.value) {
+                    var passwordMD5 = md5(userPassword.value);
+                    $.ajax({
+                        url: str2,
+                        type: "POST",
+                        async: false,
+                        contentType: "application/json;charset=UTF-8",
+                        dataType: 'json',
+                        xhrFields: { withCredentials: true },
+                        data: JSON.stringify({ "userName": userName.value, "userPassword": passwordMD5, "userEmail": userEmail.value }),
+                        success: function (msg) {
+                            alert(msg.message);
+                            if(msg.code == 200) {
+                            window.location = 'UserLogin.html';
+                        }
+                        },
+                        error: function (msg) {
+                            alert(msg.message);
+                        }
+                    })
+                }
+                else {
+                    alert('两次密码不一致')
+                }
+
+            })
+        })
+
+    </script>
+</body>
+
+</html>

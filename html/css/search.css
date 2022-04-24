@@ -1,0 +1,84 @@
+/*搜索栏设置*/
+
+/* 搜索框*/
+.search {
+    position: relative;
+    margin-left: 400px;
+    width: 350px;
+    height: 50px;
+    float: left;
+    margin-top: 25px;
+}
+
+.search>input {
+    float: left;
+    width: 300px;
+    height: 50px;
+    border: 1px solid #e0e0e0;
+    border-right: none;
+    padding: 0 10px;
+    box-sizing: border-box;
+    outline: none;
+    transition: all .2s;
+}
+
+.search>a {
+    float: left;
+    text-decoration: none;
+    width: 50px;
+    height: 50px;
+    border: 1px solid #e0e0e0;
+    box-sizing: border-box;
+    font-size: 24px;
+    color: #616161;
+    line-height: 48px;
+    transition: all .2s;
+}
+
+.search>a:hover {
+    background-color: #ff6700;
+    border-color: #ff6700;
+    color: #fff;
+}
+
+.search>input:hover,
+.search>input:hover+a {
+    border-color: #b0b0b0;
+}
+
+.search>input:focus,
+.search>input:focus+a {
+    border-color: #ff6700;
+}
+
+/* 搜索框 */
+.search-list {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 300.5px;
+    height: 241px;
+    border: 1px solid #ff6700;
+    border-top: none;
+    box-sizing: border-box;
+    background-color: #fff;
+    display: none;
+}
+
+.search>input:focus~.search-list {
+    display: block;
+}
+
+.search-list>a {
+    text-decoration: none;
+    width: 243px;
+    height: 30px;
+    padding: 6px 15px;
+    display: block;
+    box-sizing: border-box;
+    color: #424242;
+    font-size: 12px;
+    text-align: left;
+}
+
+/*导航样式结束*/

@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>寻物首页</title>
+    <!--引入图标-->
+    <link rel="stylesheet" href="img/iconfont.css">
+    <!--自己的样式-->
+    <link rel="stylesheet" href="css/index2.css">
+    <!-- <link rel="stylesheet" href="css/search.css"> -->
+    <!-- <script src="../js/index.js"></script> -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/mall.css">
+    <link rel="stylesheet" href="css/mallR.css">
+
+</head>
+
+<body>
+    <!--头部开始-->
+    <div class="header">
+        <!--
+        <div class="wrap">
+            
+            <ul class="header-left">
+                <li><button class="button2" id="upload"></a>上传商品</button><span>|</span></li>
+            </ul>
+
+           
+            <ul class="header-right">
+                <li><a id="login" href="UserLogin.html">登录</a><span>|</span></li>
+                <li><a id="signup" href="UserSignUp.html">注册</a><span>|</span></li>
+                <li id="myOrder" style="cursor: pointer" class="cart">
+                    <a><i class="iconfont">&#xe609;</i>我的订单</a>
+                </li>
+                <li><a id="shoppingCart" style="cursor: pointer">购物车</a><span></span></li>
+                <li><button class="exit" id="close" style="display: none;">退出</button></li>
+            </ul>
+        </div>
+        -->
+        <div class="header">
+            <div class="wrap">
+                <!--左边导航模块-->
+                <ul class="header-left">
+                    <li><a href="index2试验.html">寻物</a><span></span></li>
+                </ul>
+
+                <!--右边导航模块-->
+                <ul class="header-right">
+                    <li><a id="login" href="UserLogin.html">登录</a><span>|</span></li>
+                    <li><a id="signup" href="UserSignUp.html">注册</a><span>|</span></li>
+                    <li id="shoppingCart" style="cursor: pointer" class="cart">
+                        <a><i class="iconfont">&#xe609;</i>购物车</a>
+                    </li>
+                    <li><a id="myOrder" style="cursor: pointer">我的订单</a><span></span></li>
+                    <li><a id="upload" style="cursor: pointer">发布商品</a><span></span></li>
+                    <li><button class="exit" id="close" style="display: none;">退出</button></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!--头部结束-->
+    <!--导航开始-->
+    <div class="nav">
+        <div class="wrap">
+            <!--<div class="nav-bar">
+                <ul>
+                     <li><a href="#">电子书籍</a></li>
+                    <li><a href="#">游戏账号</a></li>
+                    <li><a href="#">实体书籍</a></li>
+                    <li><a href="#">游戏模型</a></li> 
+                </ul>
+            </div>-->
+            <div id="search" class="search">
+                <input type="text">
+                <a href="#" class="iconfont">&#xe637;</a>
+                <div class="search-list">
+                    <a href="#">全部商品</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--导航结束-->
+    <!--商品列表开始-->
+    <!--<div id="product" class="product1"></div>-->
+    <div id="productAll" class="product1"></div>
+    <div class="container-full">
+        <div class="item-list">
+            <div class="item-list-right">
+                <div id="product1" class="item-container"></div>
+            </div>
+        </div>
+    </div>
+    <!--商品列表结束-->
+    <!--商品展示开始-->
+    <!--     <div class="wrap">
+        <div class="product">
+            <img src="">
+            <div class="product-tag">
+                <a>
+                    商品类型:
+
+                </a>
+            </div>
+        </div>
+    </div> -->
+    <!--商品展示结束-->
+
+    <script type="text/javascript">
+        //登录和注册按钮的切换
+        {
+            if (sessionStorage.getItem('userName')) {
+                $("#login").html("<li><a id = 'login' href='#'>你好</a><span>|</span></li>");
+                $("#signup").html("<li><a id = 'signup' href='#'>" + sessionStorage.getItem('userName') + "</a><span>|</span></li>");
+                document.getElementById('close').style.display = "block";
+            }
+
+            document.getElementById('close').addEventListener('click', function () {
+                alert('账号已退出');
+                sessionStorage.removeItem('userName');
+                window.location.href = 'index2试验.html';
+                $("#login").html("<li><a id = 'login' href= '../UserLogin.html'>登录</a></li>");
+                $("#signup").html("<li><a id = 'signup' href= '../UserSignUp.html'>注册</a></li>");
+                document.getElementById('close').style.display = "none";
+            });
+        }
+
+        // 跳转功能
+        {
+            // 我的订单
+            document.getElementById('myOrder').addEventListener('click', function () {
+                if (!sessionStorage.getItem('userName')) {
+                    alert("您还未登录,即将跳转到登录页面!");
+                    window.location.href = 'UserLogin.html';
+                }
+                else window.location = "myOrder.html";
+            })
+
+            // 商品发布
+            document.getElementById('upload').addEventListener('click', function () {
+                if (!sessionStorage.getItem('userName')) {
+                    alert("您还未登录,即将跳转到登录页面!");
+                    window.location.href = 'UserLogin.html';
+                }
+                else window.location = "upload.html";
+            })
+            // 购物车跳转
+            document.getElementById('shoppingCart').addEventListener('click', function () {
+                if (!sessionStorage.getItem('userName')) {
+                    alert("您还未登录,即将跳转到登录页面!");
+                    window.location.href = 'UserLogin.html';
+                }
+                else window.location = "shoppingCart.html";
+            })
+            // 搜索框跳转
+            document.getElementById("search").addEventListener('click', function () {
+                if (!sessionStorage.getItem('userName')) {
+                    alert("您还未登录,即将跳转到登录页面!");
+                    window.location.href = 'UserLogin.html';
+                }
+                else window.location.href = "search.html";
+            })
+        }
+
+        window.onload = function () {
+            // 商品信息
+            loadData(0);
+            // test1
+            // {
+            //     var dataStore = {};
+            //     var productdata = {};
+            //     for (var i = 0; i < 16; i++) {
+            //         var productId = i + 1;
+            //         var img = "https://tse1-mm.cn.bing.net/th/id/R-C.2571bce960b6ca110764829e5f66700e?rik=KhSdK4AMDsjGIw&riu=http%3a%2f%2fn.sinaimg.cn%2fsinakd202072s%2f544%2fw640h704%2f20200702%2f5ba9-ivrxcey2715717.jpg&ehk=%2feea7rWo6zJZAi1%2fasAxeAQiEqDFNY7GYA4cUHSFjG4%3d&risl=&pid=ImgRaw&r=0";
+            //         var productTag = '教学视频';
+            //         var productName = 'PS软件PR AI LR AU 安装包拍一件发全家桶2018-2021';
+            //         var productPrice = '15.6';
+            //         var productReview = '一次购买，永久使用';
+            //         var mydiv = document.createElement("div");
+            //         productdata["productTag"] = productTag;
+            //         productdata["img"] = img;
+            //         productdata["productName"] = productName;
+            //         productdata["productPrice"] = productPrice;
+            //         productdata["productReview"] = productReview;
+            //         dataStore[productId] = productdata;
+            //         mydiv.innerHTML =
+            //             "<div  id = " + productId + " style='cursor: pointer; width: 150px; height: 260px; background-color: #bcb6b6; margin-top: 100px; margin-left: 100px; float: left;'>" +
+            //             "<img id = " + productId + "  src='" + img + "' class='pro-img' />" +
+            //             "<p  id = " + productId + " class = 'tag'>" + productTag + "</p>" +
+            //             "<p  id = " + productId + "  class = 'info' > " + productName + "</p>" +
+            //             "<p  id = " + productId + " class = 'price'> <span>" + productPrice + "</span>元</p>" +
+            //             "</div>";
+            //         $("#product").append(mydiv);
+            //     }
+            //     document.querySelector(".product1").addEventListener("click", function (event) {
+            //         var id = event.target.id;
+            //         if (!sessionStorage.getItem('userName')) {
+            //             alert("您还未登录,即将跳转到登录页面!");
+            //             window.location.href = 'UserLogin.html';
+            //         }
+            //         else {
+            //             // window.location = "productDetails/product" + id + ".html";
+            //             window.location = "productdetail.html";
+            //             sessionStorage.setItem("productId", id);
+            //             sessionStorage.setItem('dataStore', JSON.stringify(dataStore[id]));
+            //             // var datastore = sessionStorage.getItem('dataStore');
+            //             // alert(JSON.parse(datastore)["productTag"]);
+            //         }
+            //         // else window.location = "productDetails/product.html";
+
+            //     });
+
+            // }
+
+        }
+
+
+        function loadData(pageNum) {
+            $.ajax({
+                url: "http://localhost:7000/api/cdSearch?sortC=2&page=" + pageNum,
+                type: "get",
+                dataType: 'json',
+                success: function (res) {
+                    paginatFactory(res, pageNum);
+                }, error: function (res) {
+                    console.log(res);
+                }
+            })
+        }
+        /*
+                function paging(res, pageNum) {
+                    for (var i = 0; i < res.pageContent.length; i++) {
+                        var productId = i;
+                        var img = "http://localhost:7070/pics/" + res.pageContent[i].productPicture;
+                        var productTag = res.pageContent[i].productCategoryName;
+                        var productInfo = res.pageContent[i].productName;
+                        var productPrice = res.pageContent[i].productPrice;
+                        var productReview = '一次购买，永久使用';
+                        var mydiv = document.createElement("div");
+                        mydiv.innerHTML =
+                            "<div  id = " + productId + " style='cursor: pointer; width: 150px; height: 260px; background-color: #bcb6b6; margin-top: 100px; margin-left: 100px; float: left;'>" +
+                            "<img id = " + productId + "  src='" + img + "' class='pro-img' />" +
+                            "<p  id = " + productId + " class = 'price'>" + productTag + "</p>" +
+                            "<p  id = " + productId + "  class = 'price' > " + productInfo + "</p>" +
+                            "<p  id = " + productId + " class = 'price'> <span>" + productPrice + "</span>元</p>" +
+                            "</div>";
+                        $("#product").append(mydiv);
+                    }
+                    document.querySelector(".product").addEventListener("click", function (event) {
+                        var id = event.target.id;
+                        if (!sessionStorage.getItem('userName')) {
+                            alert("您还未登录,即将跳转到登录页面!");
+                            window.location.href = 'UserLogin.html';
+                        }
+                        else {
+                            window.location = "productdetail.html";
+                            sessionStorage.setItem("productId", id);
+                            sessionStorage.setItem('dataStore', JSON.stringify(dataStore[id]));
+                        }
+        
+                    });
+                }
+        */
+        /*
+                function paging(res, pageNum) {
+         var dataStore = {};
+         var productdata = {};
+         for (var i = 0; i < res.pageContent.length; i++) {
+         var productId = i;
+         var img = "http://localhost:7070/uploadProdPics/" + res.pageContent[i].productPicture;
+         var productTag = res.pageContent[i].productCategoryName;
+         var productInfo = res.pageContent[i].productName;
+         var productPrice = res.pageContent[i].productPrice;
+         var productReview = '一次购买，永久使用';
+         var mydiv = document.createElement("div");
+         productdata["productTag"] = productTag;
+         productdata["img"] = img;
+         productdata["productName"] = productInfo;
+         productdata["productPrice"] = productPrice;
+         productdata["productReview"] = productReview;
+         dataStore[productId] = productdata;
+         mydiv.innerHTML =
+         "<div id = " + productId + " style='cursor: pointer; width: 150px; height: 260px; background-color: #bcb6b6; margin-top: 100px; margin-left: 100px; float: left;'>" +
+         "< img id = " + productId + " src='" + img + "' class='pro-img' />" +
+         "<p id = " + productId + " class = 'price'>" + productTag + "</p >" +
+         "<p id = " + productId + " class = 'price' > " + productInfo + "</p >" +
+         "<p id = " + productId + " class = 'price'> <span>" + productPrice + "</span>元</p >" +
+         "</div>";
+         $("#product").append(mydiv);
+         }
+         document.querySelector(".product").addEventListener("click", function (event) {
+         var id = event.target.id;
+         if (!sessionStorage.getItem('userName')) {
+         alert("您还未登录,即将跳转到登录页面!");
+         window.location.href = 'UserLogin.html';
+         }
+         else {
+         window.location = "productdetail.html";
+         sessionStorage.setItem("productId", id);
+        sessionStorage.setItem('dataStore', JSON.stringify(dataStore[id]));
+                        }
+        
+                    });
+                }
+        
+        */
+        function paginatFactory(res, pageNum) {
+            var dataStore = {};
+            var productdata = {};
+            var html = "";    //html变量存储要展示的内容，下面循环不在赘述。
+            for (var i = 0; i < res.pageContent.length; i++) {
+                var productId = i + 1;
+                var img = "http://localhost:7070/uploadProdPics/" + res.pageContent[i].productPicture.replace(/ /g, "%20");
+                // productdata["img"] = img;
+                // productdata["productPrice"] = res.pageContent[i].productPrice;
+                // productdata["productName"] = res.pageContent[i].productName;
+                // productdata["productSelled"] = res.pageContent[i].productSaleVolume;
+                // productdata["productSeller"] = res.pageContent[i].productCategoryName;
+                // dataStore[productId] = productdata;
+                // console.dir(productId);
+                // console.dir(productdata);
+                html +=
+                    "<div  id=" + productId + " class='item-row'>" +
+                    "<div  id=" + productId + " class='item-show-info'>" +
+                    "<div  id=" + productId + " style='width: 200px; height: 300px; display: table-cell; text-align:center; vertical-align:middle;'>" +
+                    "<img id=" + productId + " src=" + img + " style='cursor: pointer; width: 100%; margin-top: 10px; margin-left: 10px;'>" +
+                    "</div>" +
+                    "<div  id=" + productId + " class='item-show-price'>" +
+                    "<span>" +
+                    "<i class='fa fa-rmb text-danger'></i>" +
+                    "<span class='seckill-price text-danger'>" + res.pageContent[i].productPrice + "</span>" +
+                    "</span>" +
+                    "</div>" +
+                    "<div  id=" + productId + " class='item-show-detail'>" +
+                    "<span>" + res.pageContent[i].productName + "</span>" +
+                    "</div>" +
+                    "<div  id=" + productId + " class='item-show-num'>" +
+                    "已售" +
+                    "<span>" + res.pageContent[i].productSaleVolume + "</span>份" +
+                    "</div>" +
+                    "<div  id=" + productId + " class='item-show-seller'>" +
+                    "<span>" + res.pageContent[i].productCategoryName + "</span>" +
+                    "</div>" +
+                    "</div>"
+                "</div>";
+                $("#productAll").html(html);
+
+            }
+
+            document.querySelector(".product1").addEventListener("click", function (event) {
+                var id = event.target.id;
+                if (!sessionStorage.getItem('userName')) {
+                    alert("您还未登录,即将跳转到登录页面!");
+                    window.location.href = 'UserLogin.html';
+                }
+                else {
+                    window.location = "productdetail.html";
+                    sessionStorage.setItem("productId", id);
+                    // sessionStorage.setItem('dataStore', JSON.stringify(dataStore[id]));
+                }
+
+            });
+
+            // document.querySelector(".product1").addEventListener("click", function (event) {
+            //     alert("!");
+            // });
+            // document.getElementById("1test").addEventListener("click", function (event) {
+            //     alert("!");
+            // });
+        }
+
+
+
+    </script>
+</body>
+
+</html>

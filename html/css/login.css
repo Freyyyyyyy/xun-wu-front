@@ -1,0 +1,158 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position:fixed;
+    background: #fff url(../img/logobg.jpg) no-repeat center 0;
+    top: 0;
+    left: 0;
+    width:100%;
+    min-width: 1000px;
+    z-index:-10;
+    zoom: 1;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
+
+
+}
+
+
+.container {
+    position: relative;
+    width: 24rem;
+}
+
+.panel {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background: rgba(0,0,0,.8);
+    display: flex;
+    justify-content: center;
+    width: 400px;
+    padding: 40px;
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0,0,0,.5);
+    border-radius: 10px;
+}
+
+.switch h1 {
+    text-align: center;
+    font-size: 1.4rem;
+    color: #ffffff;
+    border-bottom: rgba(255,250,250,.8) solid 2px;
+    cursor: default;
+}
+
+.input input {
+    outline: none;
+    width: 100%;
+    border: none;
+    background: none;
+    border-bottom: .1rem solid #ffffff;
+    color: rgba(255,250,250, 0.84);
+    font-size: 1rem;
+}
+
+.input::after {
+    content: attr(aria-placeholder);
+    position: absolute;
+    left: 0;
+    top: -20%;
+    font-size: 1.1rem;
+    color: rgba(255,250,250, 0.44);
+    transition: .3s;
+}
+
+.input.focus::after {
+    top: -70%;
+    font-size: 1rem;
+}
+
+.input#forget {
+    color: #ffffff;
+    font-size: 0.8rem;
+    text-decoration: none;
+}
+
+.input#forget:hover {
+    color: rgba(255,250,250, 0.4);
+}
+
+.input#signUp {
+    color: #ffffff;
+    font-size: 0.8rem;
+    text-decoration: none;
+}
+
+.input#signUp:hover {
+    color: rgba(255,250,250,0.4);
+}
+
+form p {
+    text-align: center;
+}
+
+form span {
+    color: #ffffff;
+    font-size: 0.8rem;
+    cursor: default;
+}
+
+form {
+    width: 12rem;
+    margin: 1rem 0 0;
+}
+
+form .input {
+    position: relative;
+    opacity: 1;
+    width: 100%;
+    margin: 2rem 0 0;
+    height: 42px;
+}
+
+form .input#userName {
+    margin: 3rem 0 0;
+}
+
+form .input#password {
+    height: 1.6rem;
+}
+
+form button {
+    display: block;
+    border: none;
+    outline: none;
+    margin: 2rem 61px 0;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(90deg, rgba(255,165,79, 0.75), rgb(255,127,80));
+    box-shadow: 0 0 8px #CD6839;
+    cursor: pointer;
+}
+
+form button:hover {
+    border: none;
+    outline: none;
+    margin: 2rem -7px 0;
+    width: 100%;
+    height: 3.5rem;
+    border-radius: 3rem;
+    background: linear-gradient(90deg, rgba(255,165,79, 0.75), rgba(255,127,80, 0.75));
+    box-shadow: 0 0 8px #CD6839;
+    cursor: pointer;
+    color: rgba(0,0,0,0.6);
+    transition: .4s;
+}
+
+

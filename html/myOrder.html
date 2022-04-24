@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>我的订单</title>
+    <!--引入图标-->
+    <link rel="stylesheet" href="img/iconfont.css">
+    <!--自己的样式-->
+    <link rel="stylesheet" href="css/index2.css">
+    <!-- <script src="../js/index.js"></script> -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/mall.css">
+    <link rel="stylesheet" href="css/mallR.css">
+
+</head>
+
+<body>
+    <!--头部开始-->
+    <div class="header">
+        <div class="wrap">
+            <!--左边导航模块-->
+            <ul class="header-left">
+                <li><a href="index2试验.html">返回寻物首页</a><span></span></li>
+                <!--<li><a href="">商城</a><span>|</span></li>
+                <li><a href="">商城</a><span>|</span></li>
+                <li><a href="">商城</a><span>|</span></li>
+                <li><a href="">商城</a><span>|</span></li>
+                <li><a href="">商城</a><span></span></li> -->
+            </ul>
+
+            <!--右边导航模块-->
+            <ul class="header-right">
+                <li><a id="login" href="UserLogin.html">登录</a><span>|</span></li>
+                <li><a id="signup" href="UserSignUp.html">注册</a><span>|</span></li>
+                <li id="shoppingCart" style="cursor: pointer" class="cart">
+                    <a><i class="iconfont">&#xe609;</i>购物车</a>
+                </li>
+                <!-- <li><a id="myOrder" style="cursor: pointer">我的订单</a><span></span></li> -->
+                <li><a id="upload" style="cursor: pointer">发布商品</a><span></span></li>
+                <li><button class="exit" id="close" style="display: none;">退出</button></li>
+            </ul>
+        </div>
+    </div>
+    <!--头部结束-->
+
+    <!--顶部分类模块开始-->
+    <div class="nav">
+        <div class="wrap">
+            <button class="order-type-button" id=""><a>全部</a></button>
+            <button class="order-type-button" id=""><a>未确认</a></button>
+            <button class="order-type-button" id=""><a>已支付</a></button>
+            <button class="order-type-button" id=""><a>未支付</a></button>
+            <button class="order-type-button" id=""><a>已取消</a></button>
+        </div>
+    </div>
+    <!--顶部分类模块结束-->
+
+    <!--订单信息区分开始-->
+    <!--  <div class="nav-dis">
+        <div class="wrap">
+            <li class="">订单详情</li>
+            <li>收货人</a></li>
+            <li>金额</a></li>
+            <li>支付方式</a></li>
+            <li>状态</a></li>
+        </div>
+    </div> -->
+    <!--订单信息区分结束-->
+
+    <!--商品订单开始-->
+    <!--订单通用盒子-->
+    <div id="order-list">
+    </div>
+
+    <!--商品订单结束-->
+
+</body>
+<script type="text/javascript">
+    //登录和注册按钮的切换
+    {
+        if (sessionStorage.getItem('userName')) {
+            $("#login").html("<li><a id = 'login' href='#'>你好</a><span>|</span></li>");
+            $("#signup").html("<li><a id = 'signup' href='#'>" + sessionStorage.getItem('userName') + "</a><span>|</span></li>");
+            document.getElementById('close').style.display = "block";
+        }
+
+        document.getElementById('close').addEventListener('click', function () {
+            alert('账号已退出');
+            window.location.href = 'index2试验.html';
+            sessionStorage.removeItem('userName');
+            $("#login").html("<li><a id = 'login' href= '../UserLogin.html'>登录</a></li>");
+            $("#signup").html("<li><a id = 'signup' href= '../UserSignUp.html'>注册</a></li>");
+            document.getElementById('close').style.display = "none";
+        });
+
+        // 商品发布
+        document.getElementById('upload').addEventListener('click', function () {
+            window.location = "upload.html";
+        })
+        // 购物车跳转
+        document.getElementById('shoppingCart').addEventListener('click', function () {
+            window.location = "shoppingCart.html";
+        })
+    }
+
+
+    //for循环创建对应的商品订单信息
+    for (var i = 0; i < 6; i++) {
+        var productId = i + 1;
+        var productName = "";
+        var productnum = "";
+        var product_whole_prince = "";
+        var product_state = "";
+        var img = "#";
+        var productdiv = document.createElement("div");
+
+        productdiv.innerHTML =
+            '<div class="order-info" id="#">' +
+            '<div class="wrap" id="order-list">' +
+            '<div class="order-img">' +
+            '<img src="' + img + '">' +
+            '</div>' +
+
+            '<div class="order-product-name">' +
+            '<a>' +
+            '商品名字:' + productName +
+            '</a>' +
+            '</div>' +
+
+            '<div class="order-number">' +
+            '<a>' +
+            '购买数量：' + productnum +
+            '</a>' +
+            '</div>' +
+
+            '<div class="order-pince">' +
+            '<a>' +
+            '金额：' + product_whole_prince +
+            '</a>' +
+            '</div>' +
+
+            '<div class="order-state" id="#">' +
+            '<a>' +
+            '状态：' + product_state +
+            '</a>' +
+            '</div>' +
+            '</div>' +
+            '</div>';
+        $("#order-list").append(productdiv);
+    }
+</script>
+
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>用户找回</title>
+    <link rel="stylesheet" href="css/styleRetrieve.css"/>
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="panel">
+            <div class="content">
+                <div class="switch">
+                    <h1 id="signUp">忘记密码</h1>
+                </div>
+
+                <form action="">
+
+                    <div class="input" aria-placeholder="邮箱"><input id="email" type="text" required></div>
+                    <p><button id="getEmailCode" type="button">点击获取验证码</button></p>
+                    <div class="input" aria-placeholder="邮箱验证码"><input id="emailCode" type="text" maxlength="6" required></div>
+                    <div class="input" aria-placeholder="新密码"><input id="password" type="password" required></div>
+                    <div class="input" aria-placeholder="确认密码"><input id="repeat" type="password" required></div>
+                    <p>
+                        <a id="login" href="UserLogin.html" class="input">点击跳转登录</a>
+                    </p>
+                    <!-- <button onclick="location.href='UserLogin.html'" id="reset" type="button">提交更改</button> -->
+                    <button id="reset" type="button" disabled="true">提交更改</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+
+
+    $('.input input').on('focus', function () {
+        $(this).parent().addClass('focus');
+    })
+
+    $('.input input').on('blur', function () {
+        if ($(this).val() === '')
+            $(this).parent().removeClass('focus');
+    })
+
+    var email = document.getElementById("email");
+    var emailCode = document.getElementById("emailCode");
+    var password = document.getElementById('password');
+    var repeat = document.getElementById('repeat');
+
+    // ajax about getEmailCode
+    $(function () {
+        $('#getEmailCode').on('click', function () {
+            if (email.value != null) {
+                alert('已点击')
+                $.ajax({
+                    url: "http://localhost:7000/api/verifyB?email=" + email.value,
+                    type: "POST",
+                    async: false,
+                    xhrFields: { withCredentials: true },
+                    success: function (msg) {
+                        alert(msg.message);
+                        $("#reset").attr("disabled",false);
+                    },
+                    error: function (res) {
+                        alert(msg.message);
+                    }
+                })
+            } else {
+                alert('请填写可接收邮件的邮箱！')
+            }
+        })
+    })
+
+    // ajax about changepassWord
+    $(function () {
+        $('#reset').on('click', function () {
+            if (password.value == repeat.value) {
+                var passwordMD5 = md5(password.value);
+                $.ajax({
+                    url: 'http://localhost:7000/api/forgerPassord?email=' + email.value + "&authCode=" + emailCode.value,
+                    type: 'POST',
+                    dataType: 'json',
+                    contentType: "application/json",
+                    async: false,
+                    xhrFields: { withCredentials: true },
+                    data: JSON.stringify({
+                        changepassword: passwordMD5
+                    }),
+                    success: function (msg) {
+                        // alert(JSON.stringify(msg));
+                        // if(msg.message = "请输入验证码！") {
+                        //     window.location = 'UserLogin.html';
+                        // }
+                        alert(msg.message);
+                        if(msg.message == '修改成功') 
+                            window.location = 'UserLogin.html';
+                        
+                    },
+                    error: function (msg) {
+                        alert(msg.message);
+                    }
+                })
+
+
+            } else {
+                alert('两次密码不一致')
+            }
+        })
+    })
+</script>
+
+</html>

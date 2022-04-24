@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style type="text/css">
+        html {
+            font-size: 100px;
+        }
+
+        body,
+        a,
+        ul,
+        li {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            text-decoration: none;
+        }
+
+        body {
+            /*width: 100%;*/
+            background: rgb(240, 240, 240);
+            font-family: PingFangSC-Regular;
+        }
+
+        div {
+            box-sizing: border-box;
+        }
+
+        .header {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            z-index: 10;
+        }
+
+        .head {
+            font-size: 0.16rem;
+            height: 0.44rem;
+            background: #d17c1b;
+            color: white;
+            text-align: center;
+            line-height: 0.44rem;
+        }
+
+        .head>a {
+            color: white;
+            float: left;
+            margin-left: 0.12rem;
+        }
+
+        .nav {
+            height: 0.44rem;
+            background: white;
+            font-size: 0.12rem;
+            line-height: 0.44rem;
+            padding-left: 0.28rem;
+        }
+
+        .nav>ul>li {
+            float: left;
+            margin: 0px 0.15rem;
+        }
+
+        .content {
+            margin-top: 1rem;
+        }
+
+        .cell1 {
+            height: 1.59rem;
+            background: white;
+            font-size: 0.12rem;
+            margin-top: 0.13rem;
+        }
+
+        .title {
+            height: 0.22rem;
+            border-bottom: 1px solid #D8D8D8;
+            padding-left: 0.12rem;
+            padding-right: 0.12rem;
+        }
+
+        .title>span {
+            float: right;
+            font-size: 0.09rem;
+            color: #c7901a;
+        }
+
+        .cell {
+            height: 0.96rem;
+            background: white;
+            border-bottom: 1px solid #D8D8D8;
+            padding: 0.12rem 0;
+        }
+
+        .cell>.img {
+            width: 1.27rem;
+            height: 0.72rem;
+            float: left;
+            margin-left: 0.12rem;
+        }
+
+        /*.content{
+overflow: scroll;
+}*/
+        .cell>.text {
+            width: 2.12rem;
+            margin-right: 0.12rem;
+            float: right
+        }
+
+        .cell>.text>span {
+            display: block;
+        }
+
+        .cell .intro {
+            font-size: 0.1rem;
+            color: #d47a25;
+        }
+
+        .cell .spay {
+            font-size: 0.09rem;
+            color: #d6bb1e;
+        }
+
+        .cell .pay {
+            color: #d38123;
+            font-size: 0.1rem;
+        }
+
+        .footer {
+            height: 0.32rem;
+            padding: 0.1rem;
+            text-align: center;
+        }
+
+        .footer>.btn {
+            float: right;
+        }
+
+        .option {
+            width: 0.65rem;
+            border: 1px solid #cf881c;
+            border-radius: 2px;
+            float: left;
+            margin-left: 0.07rem;
+        }
+
+        button {
+            background-color: #c28933;
+            color: white;
+            width: 220px;
+            height: 45px;
+            border: 0;
+            font-size: 16px;
+            box-sizing: content-box;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #a54b4a;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="header">
+            <div class="head">
+                <a href=""> </a>
+                我的订单
+            </div>
+            <div class="nav">
+                <ul>
+                    <a href="whole.html">
+                        <button>全部</button>
+                    </a>
+                    <a href="payed.html">
+                        <button>已付款</button>
+                    </a>
+                    <a href="unpayed.html">
+                        <button>未付款</button>
+                    </a>
+                    <a href="wait.html">
+                        <button>待收货</button>
+                    </a>
+                    <a href="evalution.html">
+                        <button>待评价</button>
+                    </a>
+                </ul>
+            </div>
+        </div>
+        <div class="content">
+            <div class="cell1">
+                <div class="title">
+                    《平凡的世界》<span>交易成功</span>
+                </div>
+                <div class="cell">
+                    <div class="text">
+                        <div class="brand">《平凡的世界》</div>
+                        <span class="intro">中小学生读物百万字长篇小说</span>
+                        <span class="spay">应付账款￥33</span>
+                        <span class="pay">实际付款：￥33</span>
+                    </div>
+                    <div class="img"><a
+                            href="https://image.baidu.com/search/detail?ct=503316480&z=0&ipn=d&word=《平凡的世界》图片&hs=0&pn=1&spn=0&di=7060663421280190465&pi=0&rn=1&tn=baiduimagedetail&is=0%2C0&ie=utf-8&oe=utf-8&cl=2&lm=-1&cs=3360384512%2C1691264311&os=4103873984%2C2659015084&simid=3360384512%2C1691264311&adpicid=0&lpn=0&ln=30&fr=ala&fm=&sme=&cg=&bdtype=0&oriquery=《平凡的世界》图片&objurl=https%3A%2F%2Fgimg2.baidu.com%2Fimage_search%2Fsrc%3Dhttp%3A%2F%2Fp6.itc.cn%2Fq_70%2Fimages03%2F20210501%2F31efd5c923ab4f40bfd8b1c2cf8a9d97.png%26refer%3Dhttp%3A%2F%2Fp6.itc.cn%26app%3D2002%26size%3Df9999%2C10000%26q%3Da80%26n%3D0%26g%3D0n%26fmt%3Dauto%3Fsec%3D1650631845%26t%3Dfecd26741722c6e59e8782d7a886c2bb&fromurl=ippr_z2C%24qAzdH3FAzdH3Fooo_z%26e3Bf5i7_z%26e3Bv54AzdH3FwAzdH3F9m9a99blb_d0l9cb&gsm=2&islist=&querylist=&dyTabStr=MCwzLDYsMSw0LDIsNSw3LDgsOQ%3D%3D">
+                            <img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fp6.itc.cn%2Fq_70%2Fimages03%2F20210501%2F31efd5c923ab4f40bfd8b1c2cf8a9d97.png&refer=http%3A%2F%2Fp6.itc.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1650632044&t=6d01a529f1b76273c1e43db1509a9b80"
+                                width="300px" height="220px">
+                        </a>
+                    </div>
+                    <div class="footer">
+                        <div class="btn">
+                            <div class="option">
+                                删除订单
+                            </div>
+                            <div class="option">
+                                加入购物车
+                            </div>
+                            <div class="option">
+                                立即评价
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cell1">
+                <div class="title">
+                    procreate<span>交易成功</span>
+                </div>
+                <div class="cell">
+                    <div class="text">
+                        <div class="brand">procreate</div>
+                        <span class="intro">运行在iPadOS上的绘画软件</span>
+                        <span class="spay">应付账款￥110.0</span>
+                        <span class="pay">实际付款：￥110.0</span>
+                    </div>
+                    <div class="img"><a
+                            href="https://image.baidu.com/search/detail?ct=503316480&z=0&ipn=d&word=procreate图片&hs=0&pn=7&spn=0&di=7060663421280190465&pi=0&rn=1&tn=baiduimagedetail&is=0%2C0&ie=utf-8&oe=utf-8&cl=2&lm=-1&cs=1768102045%2C3345961772&os=818681448%2C750770067&simid=4211548265%2C680630494&adpicid=0&lpn=0&ln=30&fr=ala&fm=&sme=&cg=&bdtype=0&oriquery=procreate图片&objurl=https%3A%2F%2Fgimg2.baidu.com%2Fimage_search%2Fsrc%3Dhttp%3A%2F%2Fhbimg.b0.upaiyun.com%2Fcd6ea9f5930699730a793e8c7139d67296a2318e182d7-7Cjsir_fw658%26refer%3Dhttp%3A%2F%2Fhbimg.b0.upaiyun.com%26app%3D2002%26size%3Df9999%2C10000%26q%3Da80%26n%3D0%26g%3D0n%26fmt%3Dauto%3Fsec%3D1650633538%26t%3D69df930cedb287b95dc4829968f987d9&fromurl=ippr_z2C%24qAzdH3FAzdH3Fi7wkwg_z%26e3Bv54AzdH3Fk5w61fAzdH3F9m9cd088AzdH3F&gsm=6&islist=&querylist=&dyTabStr=MCwzLDIsNiw0LDEsNSw3LDgsOQ%3D%3D">
+                            <img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Fcd6ea9f5930699730a793e8c7139d67296a2318e182d7-7Cjsir_fw658&refer=http%3A%2F%2Fhbimg.b0.upaiyun.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1650633635&t=a9160c1458d2aa51926d976ab29d35e7"
+                                width="300px" height="220px">
+                        </a>
+                    </div>
+                    <div class="footer">
+                        <div class="btn">
+                            <div class="option">
+                                删除订单
+                            </div>
+                            <div class="option">
+                                加入购物车
+                            </div>
+                            <div class="option">
+                                立即评价
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cell1">
+                <div class="title">
+                    pr教程au/ae教程<span>交易成功</span>
+                </div>
+                <div class="cell">
+                    <div class="text">
+                        <div class="brand">pr教程au/ae教程</div>
+                        <span class="intro">零基础pr教程快速入门</span>
+                        <span class="spay">应付账款￥500.0</span>
+                        <span class="pay">实际付款：￥500.0</span>
+                    </div>
+                    <div class="img"><a
+                            href="https://image.baidu.com/search/detail?ct=503316480&z=0&ipn=d&word=pr教程图片&hs=0&pn=0&spn=0&di=7060663421280190465&pi=0&rn=1&tn=baiduimagedetail&is=0%2C0&ie=utf-8&oe=utf-8&cl=2&lm=-1&cs=2217919576%2C3537809949&os=1895607125%2C1195176965&simid=4214345721%2C740338873&adpicid=0&lpn=0&ln=30&fr=ala&fm=&sme=&cg=&bdtype=0&oriquery=pr教程图片&objurl=https%3A%2F%2Fgimg2.baidu.com%2Fimage_search%2Fsrc%3Dhttp%3A%2F%2Fwww.dkziyuan.com%2Fwp-content%2Fuploads%2F2020%2F03%2Fe58d758cac1e007.jpeg%26refer%3Dhttp%3A%2F%2Fwww.dkziyuan.com%26app%3D2002%26size%3Df9999%2C10000%26q%3Da80%26n%3D0%26g%3D0n%26fmt%3Dauto%3Fsec%3D1650633627%26t%3D817198d5f43505818fc958cc42cde1d3&fromurl=ippr_z2C%24qAzdH3FAzdH3Fooo_z%26e3Bxtgrtwgviwg2_z%26e3Bv54AzdH3Fjd8898%3Fu654%3Dtg1jxrtvh&gsm=1&islist=&querylist=&dyTabStr=MCwzLDUsMSw2LDQsNyw4LDIsOQ%3D%3D">
+                            <img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.dkziyuan.com%2Fwp-content%2Fuploads%2F2020%2F03%2Fe58d758cac1e007.jpeg&refer=http%3A%2F%2Fwww.dkziyuan.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1650633687&t=147d17ece313fd3e2ec0d215354c63e6"
+                                width="300px" height="220px">
+                        </a>
+                    </div>
+                    <div class="footer">
+                        <div class="btn">
+                            <div class="option">
+                                删除订单
+                            </div>
+                            <div class="option">
+                                加入购物车
+                            </div>
+                            <div class="option">
+                                立即评价
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cell1">
+                <div class="title">
+                    英雄联盟手游代练<span>交易成功</span>
+                </div>
+                <div class="cell">
+                    <div class="text">
+                        <div class="brand">英雄联盟手游代练</div>
+                        <span class="intro">代练各种英雄角色达到王者段位</span>
+                        <span class="spay">应付账款￥100.0</span>
+                        <span class="pay">实际付款：￥100.0</span>
+                    </div>
+                    <div class="img"><a
+                            href="https://image.baidu.com/search/detail?ct=503316480&z=0&ipn=d&word=英雄联盟图片&hs=0&pn=3&spn=0&di=7060663421280190465&pi=0&rn=1&tn=baiduimagedetail&is=0%2C0&ie=utf-8&oe=utf-8&cl=2&lm=-1&cs=3375304822%2C3501495929&os=2742167982%2C1234059783&simid=4290334697%2C730496647&adpicid=0&lpn=0&ln=30&fr=ala&fm=&sme=&cg=&bdtype=0&oriquery=英雄联盟图片&objurl=https%3A%2F%2Fgimg2.baidu.com%2Fimage_search%2Fsrc%3Dhttp%3A%2F%2Fimg.avicone.com%2Fuploadimg%2Fimage%2F20211008%2F20211008163257_51758.jpg%26refer%3Dhttp%3A%2F%2Fimg.avicone.com%26app%3D2002%26size%3Df9999%2C10000%26q%3Da80%26n%3D0%26g%3D0n%26fmt%3Dauto%3Fsec%3D1650633651%26t%3D4f1a0e1f1df966d2b213590775b0981d&fromurl=ippr_z2C%24qAzdH3FAzdH3Fooo_z%26e3Bwetv5gj_z%26e3Bv54AzdH3Fxo2sAzdH3Fcam9_z%26e3Bip4s&gsm=4&islist=&querylist=&dyTabStr=MCwzLDYsMiwxLDQsNSw4LDcsOQ%3D%3D">
+                            <img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.avicone.com%2Fuploadimg%2Fimage%2F20211008%2F20211008163257_51758.jpg&refer=http%3A%2F%2Fimg.avicone.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1650633757&t=66d901a9484a8a25109ed19f53ea6fe9"
+                                width="300px" height="220px">
+                        </a>
+                    </div>
+                    <div class="footer">
+                        <div class="btn">
+                            <div class="option">
+                                删除订单
+                            </div>
+                            <div class="option">
+                                加入购物车
+                            </div>
+                            <div class="option">
+                                立即评价
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        autoSize();
+        window.onresize = function () {
+            autoSize();
+        }
+        function autoSize() {
+            // 获取当前浏览器的视窗宽度，放在w中
+            var w = document.documentElement.clientWidth;
+            // 计算实际html font-size大小
+            var size = w * 100 / 700;
+            // 获取当前页面中的html标签
+            var html = document.querySelector('html');
+            // 设置字体大小样式
+            html.style.fontSize = size + 'px';
+        }
+    </script>
+</body>
+
+</html>
