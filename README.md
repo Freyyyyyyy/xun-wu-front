@@ -9,6 +9,8 @@ Back-end project: https://github.com/Freyyyyyyy/xun-wu
 |Mysql|8.0|https://dev.mysql.com/downloads/installer/|
 |Nginx|1.20.2|http://nginx.org/en/download.html|
 
+## Directory
+
 ## Deployment
 ### Local Deployment
 #### Please build the back-end project first：
