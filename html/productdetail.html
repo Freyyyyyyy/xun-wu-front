@@ -115,7 +115,7 @@
             this.productDescription = productDescription;
             */
             Productinfo["productName"] = msg.productName;
-            Productinfo["productPicture"] = msg.productPicture;
+            Productinfo["productPicture"] = "http://localhost:7070/uploadProdPics/" + msg.productPicture.replace(/ /g, "%20");
             Productinfo["productPrice"] = msg.productPrice;
             Productinfo["productSaleVolume"] = msg.productSaleVolume;
             Productinfo["productCategoryName"] = msg.productCategoryName;
